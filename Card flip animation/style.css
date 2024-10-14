@@ -1,0 +1,38 @@
+body {
+    height: 100vh;
+    margin: 0;
+    background-color: hsl(0, 0%, 27%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 250px;
+    height: 363px;
+    padding: 50px;
+    border-radius: 12px;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+}
+
+#card {
+    width: 250px;
+    height: 363px;
+    background-image: url(cardbackside.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: cardFlip 1s;
+}
+
+@keyframes cardFlip {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(90deg); }
+}
+
+@keyframes cardFlipBack {
+    0% { transform: rotateY(90deg); }
+    100% { transform: rotateY(0deg); }
+}
