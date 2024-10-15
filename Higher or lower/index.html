@@ -7,28 +7,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="init.js"></script>
+    <script src="js/init.js" type="module"></script>
     <div class="container">
         <div class="playArea">
             <div id="guessCard">
-                <img src="cards/backside.png" alt="" id="guessCard">
+                <img src="cards/backside.png" alt="" id="hiddenCard">
             </div>
             <div id="higherLowerButtons">
-                <button id="higherButton" onclick="flipGuessCard()">Higher</button>
+                <button id="higherButton">Higher</button>
                 <button id="lowerButton">Lower</button>
             </div>
-            <div id="prevCard">
-                <img src="cards/ace_of_diamonds.png" alt="" id="prevCard">
+            <div id="currentCard">
+                <img src="cards/backside.png" alt="" id="shownCard">
             </div>
         </div>
 
         <div class="usedCards">
+            <div id="spadeCards"></div>
+            <div id="heartCards"></div>
             <div id="clubCards"></div>
             <div id="diamondCards"></div>
-            <div id="heartCards"></div>
-            <div id="spadeCards"></div>
         </div>
     </div>
-    <script src="index.js"></script>
+    <script src="js/index.js" type="module"></script>
 </body>
 </html>

@@ -1,0 +1,66 @@
+import Card from "./Card.js";
+
+const spadeUniCode = "\u{2660}";
+const clubUniCode = "\u{2663}";
+const heartUniCode = "\u{2665}";
+const diamondUniCode = "\u{2666}";
+
+export const spadeCards = new Map();
+spadeCards.set("2Spades", new Card("spade", 2, "2 of Spades", spadeUniCode));
+spadeCards.set("3Spades", new Card("spade", 3, "3 of Spades", spadeUniCode));
+spadeCards.set("4Spades", new Card("spade", 4, "4 of Spades", spadeUniCode));
+spadeCards.set("5Spades", new Card("spade", 5, "5 of Spades", spadeUniCode));
+spadeCards.set("6Spades", new Card("spade", 6, "6 of Spades", spadeUniCode));
+spadeCards.set("7Spades", new Card("spade", 7, "7 of Spades", spadeUniCode));
+spadeCards.set("8Spades", new Card("spade", 8, "8 of Spades", spadeUniCode));
+spadeCards.set("9Spades", new Card("spade", 9, "9 of Spades", spadeUniCode));
+spadeCards.set("10Spades", new Card("spade", 10, "10 of Spades", spadeUniCode));
+spadeCards.set("11Spades", new Card("spade", 11, "Jack of Spades", spadeUniCode));
+spadeCards.set("12Spades", new Card("spade", 12, "Queen of Spades", spadeUniCode));
+spadeCards.set("13Spades", new Card("spade", 13, "King of Spades", spadeUniCode));
+spadeCards.set("14Spades", new Card("spade", 14, "Ace of Spades", spadeUniCode));
+
+export const clubCards = new Map();
+clubCards.set("2Clubs", new Card("club", 2, "2 of Clubs", clubUniCode));
+clubCards.set("3Clubs", new Card("club", 3, "3 of Clubs", clubUniCode));
+clubCards.set("4Clubs", new Card("club", 4, "4 of Clubs", clubUniCode));
+clubCards.set("5Clubs", new Card("club", 5, "5 of Clubs", clubUniCode));
+clubCards.set("6Clubs", new Card("club", 6, "6 of Clubs", clubUniCode));
+clubCards.set("7Clubs", new Card("club", 7, "7 of Clubs", clubUniCode));
+clubCards.set("8Clubs", new Card("club", 8, "8 of Clubs", clubUniCode));
+clubCards.set("9Clubs", new Card("club", 9, "9 of Clubs", clubUniCode));
+clubCards.set("10Clubs", new Card("club", 10, "10 of Clubs", clubUniCode));
+clubCards.set("11Clubs", new Card("club", 11, "Jack of Clubs", clubUniCode));
+clubCards.set("12Clubs", new Card("club", 12, "Queen of Clubs", clubUniCode));
+clubCards.set("13Clubs", new Card("club", 13, "King of Clubs", clubUniCode));
+clubCards.set("14Clubs", new Card("club", 14, "Ace of Clubs", clubUniCode));
+
+export const heartCards = new Map();
+heartCards.set("2Hearts", new Card("heart", 2, "2 of Hearts", heartUniCode));
+heartCards.set("3Hearts", new Card("heart", 3, "3 of Hearts", heartUniCode));
+heartCards.set("4Hearts", new Card("heart", 4, "4 of Hearts", heartUniCode));
+heartCards.set("5Hearts", new Card("heart", 5, "5 of Hearts", heartUniCode));
+heartCards.set("6Hearts", new Card("heart", 6, "6 of Hearts", heartUniCode));
+heartCards.set("7Hearts", new Card("heart", 7, "7 of Hearts", heartUniCode));
+heartCards.set("8Hearts", new Card("heart", 8, "8 of Hearts", heartUniCode));
+heartCards.set("9Hearts", new Card("heart", 9, "9 of Hearts", heartUniCode));
+heartCards.set("10Hearts", new Card("heart", 10, "10 of Hearts", heartUniCode));
+heartCards.set("11Hearts", new Card("heart", 11, "Jack of Hearts", heartUniCode));
+heartCards.set("12Hearts", new Card("heart", 12, "Queen of Hearts", heartUniCode));
+heartCards.set("13Hearts", new Card("heart", 13, "King of Hearts", heartUniCode));
+heartCards.set("14Hearts", new Card("heart", 14, "Ace of Hearts", heartUniCode));
+
+export const diamondCards = new Map();
+diamondCards.set("2Diamonds", new Card("diamond", 2, "2 of Diamonds", diamondUniCode));
+diamondCards.set("3Diamonds", new Card("diamond", 3, "3 of Diamonds", diamondUniCode));
+diamondCards.set("4Diamonds", new Card("diamond", 4, "4 of Diamonds", diamondUniCode));
+diamondCards.set("5Diamonds", new Card("diamond", 5, "5 of Diamonds", diamondUniCode));
+diamondCards.set("6Diamonds", new Card("diamond", 6, "6 of Diamonds", diamondUniCode));
+diamondCards.set("7Diamonds", new Card("diamond", 7, "7 of Diamonds", diamondUniCode));
+diamondCards.set("8Diamonds", new Card("diamond", 8, "8 of Diamonds", diamondUniCode));
+diamondCards.set("9Diamonds", new Card("diamond", 9, "9 of Diamonds", diamondUniCode));
+diamondCards.set("10Diamonds", new Card("diamond", 10, "10 of Diamonds", diamondUniCode));
+diamondCards.set("11Diamonds", new Card("diamond", 11, "Jack of Diamonds", diamondUniCode));
+diamondCards.set("12Diamonds", new Card("diamond", 12, "Queen of Diamonds", diamondUniCode));
+diamondCards.set("13Diamonds", new Card("diamond", 13, "King of Diamonds", diamondUniCode));
+diamondCards.set("14Diamonds", new Card("diamond", 14, "Ace of Diamonds", diamondUniCode));

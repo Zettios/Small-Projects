@@ -13,17 +13,12 @@ body {
     justify-content: center;
 }
 
-#guessCard, #prevCard {
+#guessCard, #currentCard {
     width: 250px;
     height: 363px;
 }
 
-#guessCard, img {
-    width: auto;
-    height: 100%;
-}
-
-#prevCard, img {
+#guessCard > img, #currentCard > img {
     width: auto;
     height: 100%;
 }
@@ -98,15 +93,12 @@ body {
     color: white;
 }
 
-.halfOpacity {
-    opacity: 0.5 !important;
-}
-
-.animation {
-    animation: flip 1s;
-}
-
 @keyframes flip {
     0% { transform: rotateY(0deg); }
     100% { transform: rotateY(90deg); }
+}
+
+@keyframes flipBack {
+    0% { transform: rotateY(90deg); }
+    100% { transform: rotateY(0deg); }
 }
