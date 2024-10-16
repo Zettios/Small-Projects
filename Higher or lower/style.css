@@ -1,5 +1,6 @@
 body {
     background-color: hsla(0, 0%, 20%, 1);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
@@ -13,14 +14,21 @@ body {
     justify-content: center;
 }
 
-#guessCard, #currentCard {
-    width: 250px;
-    height: 363px;
+#responseMessage {
+    display: none;
+    position: absolute;
+    width: 100%;
+    align-self: center;
+    background-color: rgba(112, 0, 0, 0.5);
+    padding: 25px;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
 }
 
-#guessCard > img, #currentCard > img {
-    width: auto;
-    height: 100%;
+#hiddenCard, #shownCard {
+    width: 250px;
+    height: 363px;
 }
 
 #higherLowerButtons {
@@ -63,6 +71,12 @@ body {
     }
 }
 
+#scoreSection {
+    text-align: center;
+    color: white;
+    font-size: 2em;
+}
+
 .usedCards {
     width: 100%;
     background-color: rgb(85, 85, 85);
@@ -83,14 +97,17 @@ body {
     column-gap: 2px;
 }
 
-#clubCards img, 
-#diamondCards img, 
-#heartCards img, 
-#spadeCards img {
-    height: 50px;
+#clubCards > img, 
+#diamondCards > img, 
+#heartCards > img, 
+#spadeCards > img {
+    height: 60px;
     width: auto;
-    opacity: 1;
     color: white;
+}
+
+.halfOpacity {
+    opacity: 0.5;
 }
 
 @keyframes flip {

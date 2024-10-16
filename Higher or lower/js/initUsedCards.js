@@ -1,5 +1,9 @@
 import { clubCards, diamondCards, heartCards, spadeCards } from "../classes/CardDeck.js";
 
+/*  This class is responsible for creating the elements for the used cards. 
+    Uses the cards from the CardDeck.js to generate these.
+*/
+
 window.addEventListener("load", () => {
     console.log("Page loaded");
     const spadeCardsRow = document.getElementById("spadeCards");

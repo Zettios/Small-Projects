@@ -7,21 +7,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="js/init.js" type="module"></script>
+    <script src="js/initUsedCards.js" type="module"></script>
     <div class="container">
         <div class="playArea">
-            <div id="guessCard">
-                <img src="cards/backside.png" alt="" id="hiddenCard">
-            </div>
+            <span id="responseMessage">Wrong!</span>
+            <img src="cards/backside.png" alt="" id="shownCard">
             <div id="higherLowerButtons">
                 <button id="higherButton">Higher</button>
                 <button id="lowerButton">Lower</button>
             </div>
-            <div id="currentCard">
-                <img src="cards/backside.png" alt="" id="shownCard">
-            </div>
+            <img src="cards/backside.png" alt="" id="hiddenCard">
         </div>
-
+        <div id="scoreSection">
+            <p>Score: <span id="scoreCounter">0</span></p>
+        </div>
         <div class="usedCards">
             <div id="spadeCards"></div>
             <div id="heartCards"></div>
@@ -29,6 +28,6 @@
             <div id="diamondCards"></div>
         </div>
     </div>
-    <script src="js/index.js" type="module"></script>
+    <script src="js/gameLogic.js" type="module"></script>
 </body>
 </html>
