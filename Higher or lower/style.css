@@ -20,7 +20,7 @@ body {
     width: 100%;
     align-self: center;
     background-color: rgba(112, 0, 0, 0.5);
-    padding: 25px;
+    padding: 25px 0px;
     text-align: center;
     color: white;
     font-size: 2rem;

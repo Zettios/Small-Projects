@@ -4,11 +4,12 @@ const responseMessage = document.getElementById("responseMessage");
 const shownCard = document.getElementById("shownCard");
 const hiddenCard = document.getElementById("hiddenCard");
 const scoreCounter = document.getElementById("scoreCounter");
+const highscoreCounter = document.getElementById("highscoreCounter");
 
 const higherButton = document.getElementById("higherButton");
 const lowerButton = document.getElementById("lowerButton");
 
-const cardSet = new Map([...clubCards, ...diamondCards, ...heartCards, ...spadeCards]);
+const cardSet = new Map([...spadeCards, ...heartCards, ...clubCards, ...diamondCards]);
 let cardArray = undefined;
 
 let currentCard = undefined;
@@ -50,11 +51,13 @@ lowerButton.addEventListener("click", () => flipHiddenCardOnClick('lower'));
 
 /* -------------------- CARD FUNCTIONS -------------------- */
 
+// Uses the Fisher–Yates shuffle algorithm
 function shuffleCards() {
     console.log("Shuffling cards");
     cardArray = Array.from(cardSet.values());
     for (let index = cardArray.length - 1; index > 0; index--) {
         const randomIndex = Math.floor(Math.random() * (index + 1));
+
         [cardArray[index], cardArray[randomIndex]] = [cardArray[randomIndex], cardArray[index]];
     }
 }
@@ -84,6 +87,7 @@ function compareCards() {
 
 /* -------------------- ANIMATION STAGES -------------------- */
 
+// Gets executed when the animation for flipping the card sideways (or 90degrees on the Y axes) ends
 function executeAnimationStageZero() {
     console.log("Animation stage 0");
     hiddenCard.src = `cards/${cardArray[0].getName().toLowerCase().replace(/ /g, "_")}.png`;
@@ -91,12 +95,14 @@ function executeAnimationStageZero() {
     flipBackHiddenCard();
 }
 
+// Gets executed when the animation for flipping the card to reveal the card ends
 function executeAnimationStageOne() {
     console.log("Animation stage 1");
     if (compareCards()) {
         setTimeout(() => {
             increaseAnimationStage();
             increaseScore();
+            setHighscore();
             scoreCounter.innerHTML = score;
             flipBothCards();
         }, 500)
@@ -109,6 +115,7 @@ function executeAnimationStageOne() {
     }
 }
 
+// Gets executed when the animation for flipping the revealed card back to 90 degrees on the Y axes ends
 function executeAnimationStageTwo() {
     console.log("Animation stage 2");
     increaseAnimationStage();
@@ -121,6 +128,7 @@ function executeAnimationStageTwo() {
     flipBackBothCards();
 }
 
+// Gets executed when the animation for flipping the revealed card back to unknown ends
 function executeAnimationEnd() {
     console.log("Animation default");
     if (gameOver) {
@@ -130,7 +138,7 @@ function executeAnimationEnd() {
     playingFlipAnimation = false;
 }
 
-/* -------------------- INCREASE & RESET FUNCTIONS -------------------- */
+/* -------------------- HELPER FUNCTIONS -------------------- */
 
 function resetShownCardImage() {
     shownCard.src = `cards/backside.png`;
@@ -176,6 +184,12 @@ function resetAnimationStage() {
 
 function increaseScore() {
     score++;
+}
+
+function setHighscore() {
+    if (score > highscoreCounter.innerHTML) {
+        highscoreCounter.innerHTML = score
+    }
 }
 
 function resetScore() {
