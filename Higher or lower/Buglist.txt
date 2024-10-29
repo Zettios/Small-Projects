@@ -1,0 +1,2 @@
+Bugs:
+- The last two values of the array can still be duplicate values.

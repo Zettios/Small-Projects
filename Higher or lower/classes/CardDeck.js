@@ -7,6 +7,8 @@ const diamondUniCode = "\u{2666}";
 
 export const spadeCards = new Map();
 spadeCards.set("2Spades", new Card("spade", 2, "2 of Spades", spadeUniCode));
+// spadeCards.set("2Spadess", new Card("spade", 2, "2 of Spades", spadeUniCode));
+// spadeCards.set("2Spadesss", new Card("spade", 2, "2 of Spades", spadeUniCode));
 spadeCards.set("3Spades", new Card("spade", 3, "3 of Spades", spadeUniCode));
 spadeCards.set("4Spades", new Card("spade", 4, "4 of Spades", spadeUniCode));
 spadeCards.set("5Spades", new Card("spade", 5, "5 of Spades", spadeUniCode));

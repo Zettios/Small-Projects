@@ -1,6 +1,7 @@
 import { clubCards, diamondCards, heartCards, spadeCards } from "../classes/CardDeck.js";
 
-const responseMessage = document.getElementById("responseMessage");
+const failureMessage = document.getElementById("failureMessage");
+const successMessage = document.getElementById("successMessage");
 const shownCard = document.getElementById("shownCard");
 const hiddenCard = document.getElementById("hiddenCard");
 const scoreCounter = document.getElementById("scoreCounter");
@@ -9,6 +10,10 @@ const highscoreCounter = document.getElementById("highscoreCounter");
 const higherButton = document.getElementById("higherButton");
 const lowerButton = document.getElementById("lowerButton");
 
+// const cardSet = new Map([...spadeCards].splice(0,3));
+// const tempArr1 = [...spadeCards].splice(0,3);
+// const tempArr2 = [...heartCards].splice(0,3);
+// const cardSet = new Map([...tempArr1, ...tempArr2]);
 const cardSet = new Map([...spadeCards, ...heartCards, ...clubCards, ...diamondCards]);
 let cardArray = undefined;
 
@@ -30,16 +35,16 @@ window.addEventListener("load", () => {
 hiddenCard.addEventListener("animationend", () => {
     switch(animationStage) {
         case 0:
-            executeAnimationStageZero();
+            executeStageZeroAnimationEnd();
             break;
         case 1:
-            executeAnimationStageOne();
+            executeStageOneAnimationEnd();
             break;
         case 2:
-            executeAnimationStageTwo();
+            executeStageTwoAnimationEnd();
             break;
         default:
-            executeAnimationEnd();
+            executeFinalAnimationEnd();
             break;
     }
 });
@@ -53,12 +58,25 @@ lowerButton.addEventListener("click", () => flipHiddenCardOnClick('lower'));
 
 // Uses the Fisher–Yates shuffle algorithm
 function shuffleCards() {
-    console.log("Shuffling cards");
     cardArray = Array.from(cardSet.values());
     for (let index = cardArray.length - 1; index > 0; index--) {
         const randomIndex = Math.floor(Math.random() * (index + 1));
-
         [cardArray[index], cardArray[randomIndex]] = [cardArray[randomIndex], cardArray[index]];
+    }
+
+    fixConsecutiveDuplicates();
+}
+
+function fixConsecutiveDuplicates() {
+    for (let cardArrayIndex = 1; cardArrayIndex < cardArray.length; cardArrayIndex++) {
+        if (cardArray[cardArrayIndex].getNumber() === cardArray[cardArrayIndex - 1].getNumber()) {
+            for (let j = cardArrayIndex + 1; j < cardArray.length; j++) {
+                if (cardArray[j].getNumber() !== cardArray[cardArrayIndex].getNumber()) {
+                    [cardArray[cardArrayIndex], cardArray[j]] = [cardArray[j], cardArray[cardArrayIndex]];
+                    break;
+                }
+            }
+        }
     }
 }
 
@@ -78,50 +96,62 @@ function flipHiddenCardOnClick(playerSelection) {
 }
 
 function compareCards() {
-    if (playerGuessSelection === 'higher') {
-        return (currentCard.getNumber() < cardArray[0].getNumber()) ? true : false;
-    } else {
-        return (currentCard.getNumber() < cardArray[0].getNumber()) ? false : true;
+    switch(playerGuessSelection) {
+        case 'higher':
+            return (currentCard.getNumber() < cardArray[0].getNumber()) ? true : false;
+        case 'lower':
+            return (currentCard.getNumber() > cardArray[0].getNumber()) ? true : false;
+        default:
+            return false;
     }
+}
+
+function checkWinState() {
+    return (cardArray.length <= 1) ? true : false;
 }
 
 /* -------------------- ANIMATION STAGES -------------------- */
 
 // Gets executed when the animation for flipping the card sideways (or 90degrees on the Y axes) ends
-function executeAnimationStageZero() {
-    console.log("Animation stage 0");
+function executeStageZeroAnimationEnd() {
     hiddenCard.src = `cards/${cardArray[0].getName().toLowerCase().replace(/ /g, "_")}.png`;
     increaseAnimationStage();
     flipBackHiddenCard();
 }
 
 // Gets executed when the animation for flipping the card to reveal the card ends
-function executeAnimationStageOne() {
-    console.log("Animation stage 1");
-    if (compareCards()) {
-        setTimeout(() => {
-            increaseAnimationStage();
-            increaseScore();
-            setHighscore();
-            scoreCounter.innerHTML = score;
-            flipBothCards();
-        }, 500)
+function executeStageOneAnimationEnd() {
+    if (compareCards()) {        
+        if (checkWinState()) {
+            updatePlayerScore();
+            successMessage.style.display = "block";
+            setTimeout(() => {
+                successMessage.style.display = "none";
+                resetGame();
+            }, 2000);
+        } else {
+            updatePlayerScore();
+            setTimeout(() => {
+                increaseAnimationStage();
+                flipBothCards();
+            }, 500)
+        }
     } else {
-        responseMessage.style.display = "block";
+        failureMessage.style.display = "block";
+        resetScore();
         setTimeout(() => {
-            responseMessage.style.display = "none";
+            failureMessage.style.display = "none";
             resetGame();
         }, 2000);
     }
 }
 
 // Gets executed when the animation for flipping the revealed card back to 90 degrees on the Y axes ends
-function executeAnimationStageTwo() {
-    console.log("Animation stage 2");
+function executeStageTwoAnimationEnd() {
     increaseAnimationStage();
     if (gameOver) {
-        console.log("Player guessed incorrectly, reset!");
         shuffleCards();
+        gameOver = false;
     }
     loadNextShownCardImage(cardArray.shift());
     resetHiddenCardImage();
@@ -129,20 +159,12 @@ function executeAnimationStageTwo() {
 }
 
 // Gets executed when the animation for flipping the revealed card back to unknown ends
-function executeAnimationEnd() {
-    console.log("Animation default");
-    if (gameOver) {
-        gameOver = false;
-    }
+function executeFinalAnimationEnd() {
     resetAnimationStage();
     playingFlipAnimation = false;
 }
 
 /* -------------------- HELPER FUNCTIONS -------------------- */
-
-function resetShownCardImage() {
-    shownCard.src = `cards/backside.png`;
-}
 
 function resetHiddenCardImage() {
     hiddenCard.src = `cards/backside.png`;
@@ -182,11 +204,9 @@ function resetAnimationStage() {
     animationStage = 0;
 }
 
-function increaseScore() {
+function updatePlayerScore() {
     score++;
-}
-
-function setHighscore() {
+    scoreCounter.innerHTML = score;
     if (score > highscoreCounter.innerHTML) {
         highscoreCounter.innerHTML = score
     }
@@ -194,21 +214,18 @@ function setHighscore() {
 
 function resetScore() {
     score = 0;
+    scoreCounter.innerHTML = score;
 }
 
 function resetGame() {
-    console.log('Resetting game');
     gameOver = true;
-    resetScore();
     increaseAnimationStage();
-    scoreCounter.innerHTML = score;
-
     resetUsedCardsOpacity();
     flipBothCards();
 }
 
 function resetUsedCardsOpacity() {
-    let shownCards = document.querySelectorAll('.halfOpacity')
+    const shownCards = document.querySelectorAll('.halfOpacity')
     for (let index = 0; index < shownCards.length; index++) {
         shownCards[index].classList.remove('halfOpacity');
     }
