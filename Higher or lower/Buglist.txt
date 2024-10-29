@@ -1,2 +1,5 @@
-Bugs:
-- The last two values of the array can still be duplicate values.
+Open bugs:
+-
+
+Resolved bugs:
+1. The last two values of the array can still be duplicate values. 

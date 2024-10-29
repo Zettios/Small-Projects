@@ -30,6 +30,7 @@ let score = 0;
 window.addEventListener("load", () => {
     shuffleCards();
     loadNextShownCardImage(cardArray.shift());
+    console.log(cardArray);
 });
 
 hiddenCard.addEventListener("animationend", () => {
@@ -75,6 +76,29 @@ function fixConsecutiveDuplicates() {
                     [cardArray[cardArrayIndex], cardArray[j]] = [cardArray[j], cardArray[cardArrayIndex]];
                     break;
                 }
+            }
+        }
+    }
+
+    // Checks if the last two values are the same
+    // If so, swaps it around to a valid position
+    if (cardArray[cardArray.length - 1].getNumber() === cardArray[cardArray.length - 2].getNumber()) {
+        const leftVal = cardArray[cardArray.length - 3].getNumber();
+        const currentVal = cardArray[cardArray.length - 2].getNumber();
+        const rightVal = cardArray[cardArray.length - 1].getNumber();
+
+        for (let index = (cardArray.length - 3); index > 0; index--) {
+            let canSwap = false;
+            let swapLeftVal = cardArray[index - 1].getNumber();
+            let swapCurrentVal = cardArray[index].getNumber();
+            let swapRightVal = cardArray[index + 1].getNumber();
+
+            (swapLeftVal !== currentVal && swapRightVal !== currentVal) ? canSwap = true : canSwap = false;
+            (leftVal !== swapCurrentVal && rightVal !== swapCurrentVal) ? canSwap = true : canSwap = false;
+
+            if(canSwap) {
+                [cardArray[cardArray.length - 2], cardArray[index]] = [cardArray[index], cardArray[cardArray.length - 2]];
+                break;
             }
         }
     }
