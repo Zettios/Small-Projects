@@ -1,0 +1,14 @@
+body {
+    height: 100vh;
+    margin: 0px;
+    background-color: hsl(0, 0%, 15%);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#gameWindow {
+    background-color: rgb(255, 255, 255);
+    border: 4px white solid;
+    align-self: center;
+}
