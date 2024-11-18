@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="mainStyle.css">
+    <title>Website of Things</title>
+    <link rel="stylesheet" href="styles/main/mainStyle.css">
+    <link rel="stylesheet" href="styles/dropdown/navbar.css">
 </head>
 <body>
-    
+    <div id="container">
+        <div class="item-container">
+            <p class="item-title">Navbar</p>
+            <div id="navbar">
+                <div id="logo-container">
+                    <img src="images/lorem ipsum logo no text.png" alt="Super awesome logo">
+                    <button id="expand-navbar-btn" onclick="expandShowDropdown()">☰</button>
+                </div>
+                <ul id="dropdown-list" class="collapsed">
+                    <li class="">Home</li>
+                    <li class="">About Me</li>
+                    <li class="">Projects</li>
+                    <li class="">Contact Me</li>
+                    <li class="">Copyright</li>
+                </ul>
+            </div>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, doloremque fugit necessitatibus vitae ipsum nihil labore placeat quae? 
+                Vitae, quaerat consectetur corrupti est ducimus officia deleniti facere voluptatibus. Voluptates, veritatis.</p>
+        </div>
+    </div>
     <script src="wot.js"></script>
 </body>
 </html>

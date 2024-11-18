@@ -1,0 +1,113 @@
+$navbar-bg-color: #333;
+$navbar-item-bg-color: #414141;
+$navbar-item-bg-color-hover: #5c5c5c;
+$navbar-expand-btn-bg: #595959;
+$navbar-expand-btn-bg-hover: #696969;
+
+$spacing: 7px;
+$logo-container-min-height: 60px;
+$items-min-height: 40px;
+$item-font-size: 24px;
+$icon-font-size: 20px;
+
+#navbar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: $navbar-bg-color;
+    min-height: $items-min-height;
+
+    > #logo-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: $logo-container-min-height;
+        padding: $spacing;
+        border-bottom: 1px white solid;
+
+        > img {
+            height: $logo-container-min-height;
+            width: $logo-container-min-height;
+        }
+
+        > #expand-navbar-btn {
+            background-color: $navbar-expand-btn-bg;
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: $icon-font-size;
+    
+            &:hover {
+                cursor: pointer;
+            }
+    
+            &:active {
+                background-color: $navbar-expand-btn-bg-hover;
+            }
+        }
+    }
+
+    > ul {
+        list-style: none;
+        margin: 0px;
+        padding-left: 0px;
+        background-color: $navbar-item-bg-color;
+
+        > li {    
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: $items-min-height;
+            padding: $spacing;
+            font-size: $item-font-size;
+
+            &:hover {
+                cursor: pointer;
+                background-color: $navbar-item-bg-color-hover;
+            }
+        }
+    }
+
+    > .collapsed {
+        display: none;
+    }
+    
+    > .showing {
+        display: block;
+    }
+}
+
+@media (min-width: 1200px) {
+    #navbar {
+        flex-direction: row;
+        border-bottom: 1px white solid;
+
+        > #logo-container {
+            border-bottom: none;  
+        }
+
+        > ul {
+            display: inline-flex;
+            background-color: $navbar-bg-color;
+            margin-left: 15px;
+
+            > li {
+
+            }
+        }
+
+        > .collapsed {
+            display: inline-flex;
+        }
+        
+        > .showing {
+            display: inline-flex;
+        }
+    }
+
+    #expand-navbar-btn {
+        display: none;
+    }
+}
